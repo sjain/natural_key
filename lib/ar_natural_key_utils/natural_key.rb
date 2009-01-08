@@ -15,13 +15,10 @@ module ActiveRecord
       def create_or_update_by_natural_key(options)
         #TODO options should contain all key_attributes, and their values should be non-nil
         key_options = options.reject { |k,v| !@@key_attributes.include?(k) }
-        puts "key_options.inspect = +#{key_options.inspect}+"
         record = find(:first, :conditions => key_options)
         if(record.nil?)
-          puts "record not found with key attributes. creating new ..."
           record = create(options)
         else
-          puts "record found with key attributes. updating other attribs ..."
           record.update_attributes!(options)
         end
         record

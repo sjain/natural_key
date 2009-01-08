@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   natural_key :first_name, :last_name
 end
 
-class TestArNaturalKeyUtils < ActiveSupport::TestCase
+class TestArNaturalKeyUtils < ActiveRecordTestCase
   def test_update_by_natural_key
     created_record = User.create(:first_name => 'John', :last_name => "Smith", :age => 21, :address => "Chicago")
     updated_record = User.create_or_update_by_natural_key(:first_name => 'John', :last_name => "Smith", :age => 25, :address => "New York")

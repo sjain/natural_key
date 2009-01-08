@@ -1,6 +1,14 @@
 require 'stringio'
 require 'test/unit'
+require 'lib/activerecord_test_case'
 require File.dirname(__FILE__) + '/../lib/ar_natural_key_utils'
-require 'config'
-require "active_record/test_case"
-require 'db_init/init'
+
+# gem install redgreen for colored test output
+begin require 'redgreen'; rescue LoadError; end
+
+# The following is not required since we use active-record gem installed on the system
+#require 'boot' unless defined?(ActiveRecord)
+
+class Test::Unit::TestCase
+# any test helper methods can go here
+end
