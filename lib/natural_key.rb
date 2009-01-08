@@ -1,8 +1,8 @@
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
-require 'ar_natural_key_utils/natural_key'
+require 'natural_key/natural_key'
 
-module ArNaturalKeyUtils
+module NaturalKey
   VERSION = '0.0.1'
 end

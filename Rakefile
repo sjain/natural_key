@@ -1,10 +1,10 @@
 %w[rubygems rake rake/clean fileutils newgem rubigen].each { |f| require f }
-require File.dirname(__FILE__) + '/lib/ar_natural_key_utils'
+require File.dirname(__FILE__) + '/lib/natural_key'
 
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.new('ar_natural_key_utils', ArNaturalKeyUtils::VERSION) do |p|
-  p.developer('FIXME full name', 'FIXME email')
+$hoe = Hoe.new('natural_key', NaturalKey::VERSION) do |p|
+  p.developer('Pathfinder Associates', 'info@pathf.com')
   p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
   p.rubyforge_name       = p.name # TODO this is default value
