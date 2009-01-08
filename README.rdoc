@@ -1,26 +1,33 @@
-= ar_natural_key_utils
+= natural_key
 
-* FIX (url)
+* http://www.pathf.com
 
 == DESCRIPTION:
 
-FIX (describe your package)
+This gem adds create_or_update functionality to ActiveRecord based on a user-defined natural-key.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* TODO
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+#
+# Table users(first_name varchar, last_name varchar, age integer, address string, salary integer)
+#
+class User < ActiveRecord::Base
+  natural_key :first_name, :last_name
+end
+
+User.create_or_update_by_natural_key(:first_name => 'John', :last_name => "Smith", :age => 25, :address => "New York")
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* TODO
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* gem install natural_key; rake gems:unpack GEM=natural_key
 
 == LICENSE:
 

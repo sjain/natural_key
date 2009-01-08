@@ -3,7 +3,8 @@ module ActiveRecord
     class << self
       def natural_key(*key_attributes)
         # TODO validate the supplied key_attributes are subset of all attributes
-        # TODO key_attributes should not contain primary_key/surrogate_key
+        # TODO key_attributes should default to primary_key/surrogate_key (:id)
+        # TODO if natural_key is composed of non-primary-key, then it should not contain primary_key
         raise "natural key attributes cannot be empty" if key_attributes.empty?
         @@key_attributes = key_attributes
       end
