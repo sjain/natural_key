@@ -12,14 +12,18 @@ This gem adds create_or_update functionality to ActiveRecord based on a user-def
 
 == SYNOPSIS:
 
-#
-# Table users(first_name varchar, last_name varchar, age integer, address string, salary integer)
-#
-class User < ActiveRecord::Base
-  natural_key :first_name, :last_name
-end
+Define natural key for your model as follows:
 
-User.create_or_update_by_natural_key(:first_name => 'John', :last_name => "Smith", :age => 25, :address => "New York")
+  #
+  # Table users(first_name varchar, last_name varchar, age integer, address string, salary integer)
+  #
+  class User < ActiveRecord::Base
+    natural_key :first_name, :last_name
+  end
+
+With this in place, a method 'create_or_update_by_natural_key' can be used to invoke create/update.
+
+  User.create_or_update_by_natural_key(:first_name => 'John', :last_name => "Smith", :age => 25, :address => "New York")
 
 == REQUIREMENTS:
 
@@ -27,7 +31,7 @@ User.create_or_update_by_natural_key(:first_name => 'John', :last_name => "Smith
 
 == INSTALL:
 
-* gem install sjain-natural_key --source http://gems.github.com; rake gems:unpack GEM=sjain-natural_key
+  gem install sjain-natural_key --source http://gems.github.com; rake gems:unpack GEM=sjain-natural_key
 
 == LICENSE:
 
