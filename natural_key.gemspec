@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pathfinder Associates"]
-  s.date = %q{2009-01-09}
+  s.date = %q{2009-01-12}
   s.description = %q{This gem adds create_or_update functionality to ActiveRecord based on a user-defined natural-key.}
   s.email = ["info@pathf.com"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc"]
@@ -24,14 +24,11 @@ Gem::Specification.new do |s|
     s.specification_version = 2
 
     if current_version >= 3 then
-      s.add_development_dependency(%q<newgem>, [">= 1.2.3"])
-      s.add_development_dependency(%q<hoe>, [">= 1.8.0"])
+      s.add_runtime_dependency(%q<activerecord>, [">= 2.1.0"])
     else
-      s.add_dependency(%q<newgem>, [">= 1.2.3"])
-      s.add_dependency(%q<hoe>, [">= 1.8.0"])
+      s.add_dependency(%q<activerecord>, [">= 2.1.0"])
     end
   else
-    s.add_dependency(%q<newgem>, [">= 1.2.3"])
-    s.add_dependency(%q<hoe>, [">= 1.8.0"])
+    s.add_dependency(%q<activerecord>, [">= 2.1.0"])
   end
 end

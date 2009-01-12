@@ -4,5 +4,5 @@ $:.unshift(File.dirname(__FILE__)) unless
 require 'natural_key/natural_key'
 
 module NaturalKey
-  VERSION = '0.0.1'
+  VERSION = '0.0.2'
 end

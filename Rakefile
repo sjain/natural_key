@@ -8,18 +8,20 @@ $hoe = Hoe.new('natural_key', NaturalKey::VERSION) do |p|
   p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
   p.rubyforge_name       = p.name # TODO this is default value
-  # p.extra_deps         = [
-  #   ['activesupport','>= 2.0.2'],
-  # ]
-  p.extra_dev_deps = [
-    ['newgem', ">= #{::Newgem::VERSION}"]
+  p.extra_deps         = [
+    ['activerecord', ">= 2.1.0"]
   ]
+#  p.extra_dev_deps = [
+#    ['newgem', ">= #{::Newgem::VERSION}"],
+#  ]
   
   p.clean_globs |= %w[**/.DS_Store tmp *.log]
   path = (p.rubyforge_name == p.name) ? p.rubyforge_name : "\#{p.rubyforge_name}/\#{p.name}"
   p.remote_rdoc_dir = File.join(path.gsub(/^#{p.rubyforge_name}\/?/,''), 'rdoc')
   p.rsync_args = '-av --delete --ignore-errors'
 end
+# Delete the default Hoe dependency (borrowed from warbler gem)
+$hoe.spec.dependencies.delete_if { |dep| dep.name == "hoe" }
 
 require 'newgem/tasks' # load /tasks/*.rake
 Dir['tasks/**/*.rake'].each { |t| load t }
