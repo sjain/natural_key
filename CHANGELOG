@@ -1,0 +1,8 @@
+== 0.1.0 2009-01-07
+* fixed to accept hash with string keys in addition to symbols
+* cleaned up unnecessary files
+* using Echoe instead of newgem for gem generation
+* github updated
+
+== 0.0.1 2009-01-07
+* initial release
