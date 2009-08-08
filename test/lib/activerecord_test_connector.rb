@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'active_record'
 require 'active_record/version'
 require 'active_record/fixtures'
@@ -32,7 +33,7 @@ class ActiveRecordTestConnector
   end
 
   def self.setup_connection
-    db = ENV['DB'].blank?? 'mysql' : ENV['DB']
+    db = ENV['DB'].blank?? 'sqlite3' : ENV['DB']
     
     configurations = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'database.yml'))
     raise "no configuration for '#{db}'" unless configurations.key? db

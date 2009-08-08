@@ -6,10 +6,6 @@
 
 This gem adds create_or_update functionality to ActiveRecord based on a user-defined natural-key.
 
-== FEATURES/PROBLEMS:
-
-* TODO
-
 == SYNOPSIS:
 
 Define natural key for your model as follows:
@@ -25,13 +21,10 @@ With this in place, a method 'create_or_update_by_natural_key' can be used to in
 
   User.create_or_update_by_natural_key(:first_name => 'John', :last_name => "Smith", :age => 25, :address => "New York")
 
-== REQUIREMENTS:
-
-* TODO
-
 == INSTALL:
 
-  gem install sjain-natural_key --source http://gems.github.com; rake gems:unpack GEM=sjain-natural_key
+  gem sources -a http://gems.github.com
+  gem install sjain-natural_key
 
 == LICENSE:
 

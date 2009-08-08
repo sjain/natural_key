@@ -1,30 +1,15 @@
-%w[rubygems rake rake/clean fileutils newgem rubigen].each { |f| require f }
-require File.dirname(__FILE__) + '/lib/natural_key'
+require 'rubygems'
+require 'rake'
+require 'echoe'
+require 'lib/natural_key'
 
-# Generate all the Rake tasks
-# Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.new('natural_key', NaturalKey::VERSION) do |p|
-  p.developer('Pathfinder Associates', 'info@pathf.com')
-  p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
-  p.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
-  p.rubyforge_name       = p.name # TODO this is default value
-  p.extra_deps         = [
-    ['activerecord', ">= 2.1.0"]
-  ]
-#  p.extra_dev_deps = [
-#    ['newgem', ">= #{::Newgem::VERSION}"],
-#  ]
-  
-  p.clean_globs |= %w[**/.DS_Store tmp *.log]
-  path = (p.rubyforge_name == p.name) ? p.rubyforge_name : "\#{p.rubyforge_name}/\#{p.name}"
-  p.remote_rdoc_dir = File.join(path.gsub(/^#{p.rubyforge_name}\/?/,''), 'rdoc')
-  p.rsync_args = '-av --delete --ignore-errors'
+Echoe.new('natural_key', NaturalKey::VERSION) do |p|
+  p.description = "ActiveRecord.create_or_update based on a user-defined natural-key"
+  p.url = "http://github.com/sjain/natural_key"
+  p.author = "Sharad Jain"
+  p.email = "shaanjain@gmail.com"
+  p.ignore_pattern = ["tmp/*", "script/*", "nbproject/**/*"]
+  p.development_dependencies = []
 end
-# Delete the default Hoe dependency (borrowed from warbler gem)
-$hoe.spec.dependencies.delete_if { |dep| dep.name == "hoe" }
 
-require 'newgem/tasks' # load /tasks/*.rake
-Dir['tasks/**/*.rake'].each { |t| load t }
-
-# TODO - want other tests/tasks run by default? Add them to the list
-# task :default => [:spec, :features]
+Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].sort.each { |ext| load ext }

@@ -1,0 +1,13 @@
+natural_key.gemspec
+Rakefile
+README.rdoc
+lib/natural_key/natural_key.rb
+lib/natural_key.rb
+test/fixtures/schema.rb
+test/test_helper.rb
+test/database.yml
+test/test_natural_key.rb
+test/lib/activerecord_test_connector.rb
+test/lib/activerecord_test_case.rb
+VERSION.yml
+Manifest

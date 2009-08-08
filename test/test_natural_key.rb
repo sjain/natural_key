@@ -5,6 +5,13 @@ class User < ActiveRecord::Base
 end
 
 class TestNaturalKey < ActiveRecordTestCase
+  def test_create_by_natural_key
+    created_record = User.create(:first_name => 'John', :last_name => "Smith", :age => 21, :address => "Chicago")
+    updated_record = User.create_or_update_by_natural_key(:first_name => 'Different', :last_name => "Smith", :age => 25, :address => "New York")
+    assert_not_equal(created_record.id, updated_record.id)
+    assert_equal(25, updated_record.age)
+    assert_equal("New York", updated_record.address)
+  end
   def test_update_by_natural_key
     created_record = User.create(:first_name => 'John', :last_name => "Smith", :age => 21, :address => "Chicago")
     updated_record = User.create_or_update_by_natural_key(:first_name => 'John', :last_name => "Smith", :age => 25, :address => "New York")
@@ -12,10 +19,14 @@ class TestNaturalKey < ActiveRecordTestCase
     assert_equal(25, updated_record.age)
     assert_equal("New York", updated_record.address)
   end
-  def test_create_by_natural_key
-    created_record = User.create(:first_name => 'John', :last_name => "Smith", :age => 21, :address => "Chicago")
-    updated_record = User.create_or_update_by_natural_key(:first_name => 'Different', :last_name => "Smith", :age => 25, :address => "New York")
-    assert_not_equal(created_record.id, updated_record.id)
+  def test_update_by_natural_key_when_keys_are_strings_instead_of_symbols
+    User.create(:first_name => 'Mary', :last_name => "Beth", :age => 21, :address => "Chicago")
+    john_smith = User.create(:first_name => 'John', :last_name => "Smith", :age => 21, :address => "Chicago")
+    updated_record = User.create_or_update_by_natural_key('first_name' => 'John',
+      'last_name' => "Smith",
+      'age' => 25,
+      'address' => "New York")
+    assert_equal(john_smith.id, updated_record.id)
     assert_equal(25, updated_record.age)
     assert_equal("New York", updated_record.address)
   end
