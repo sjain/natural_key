@@ -2,7 +2,7 @@ require 'active_record'
 
 module ActiveRecord
   class Base
-    class_inheritable_accessor :key_attributes
+    class_attribute :key_attributes
     class << self
       def natural_key(*key_attributes)
         # TODO validate the supplied key_attributes are subset of all attributes
