@@ -24,7 +24,7 @@ With this in place, a method 'create_or_update_by_natural_key' can be used to in
 == INSTALL:
 
   gem sources -a http://gems.github.com
-  gem install sjain-natural_key
+  gem install natural_key
 
 == LICENSE:
 
