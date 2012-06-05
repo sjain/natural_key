@@ -11,8 +11,3 @@ ActiveRecord::Base.connection.create_table(:users) do |t|
     t.string :address
     t.integer :salary, :default => 70000
 end
-
-class User < ActiveRecord::Base
-  #include NaturalKey
-  natural_key :first_name, :last_name
-end

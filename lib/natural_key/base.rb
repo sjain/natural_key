@@ -16,18 +16,35 @@ module ActiveRecord
       # TODO The following method should only be made available when natural_key is called with proper
       # attributes. (hint: use class_eval?)
       def create_or_update_by_natural_key(options)
-        options.symbolize_keys!
-        #TODO options should contain all key_attributes, and their values should be non-nil
-        key_options = options.reject { |k,v| !key_attributes.include?(k) }
-        raise "key_options cannot be empty" if key_options.empty?
-        record = find(:first, :conditions => key_options)
+        record = locate_record(options)
         if(record.nil?)
           record = create(options)
+        else
+          record.update_attributes(options)
+        end
+        record
+      end
+
+      def create_or_update_by_natural_key!(options)
+        record = locate_record(options)
+        if(record.nil?)
+          record = create!(options)
         else
           record.update_attributes!(options)
         end
         record
       end
+
+      private
+
+      def locate_record(options)
+        options.symbolize_keys!
+        #TODO options should contain all key_attributes, and their values should be non-nil
+        key_options = options.reject { |k,v| !key_attributes.include?(k) }
+        raise "key_options cannot be empty" if key_options.empty?
+        find(:first, :conditions => key_options)
+      end
+
     end
   end
 end
